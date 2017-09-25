@@ -1,7 +1,7 @@
 package co.bugg.advancedxp.themes;
 
 /**
- * These is the basic XP orb settings.
+ * These are the basic XP orb settings.
  * Any changes should be made in the
  * constructor of extensions on this
  * class.
