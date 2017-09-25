@@ -1,6 +1,7 @@
 package co.bugg.advancedxp.commands;
 
 import co.bugg.advancedxp.gui.MainGui;
+import co.bugg.advancedxp.util.TickDelay;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandException;
@@ -36,7 +37,7 @@ public class BaseCommand implements ICommand {
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-        Minecraft.getMinecraft().displayGuiScreen(new MainGui());
+        new TickDelay(() -> Minecraft.getMinecraft().displayGuiScreen(new MainGui()), 2);
     }
 
     @Override
