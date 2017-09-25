@@ -52,6 +52,11 @@ public final class ThemeUtil {
         }
     }
 
+    /**
+     * Get the loaded theme with provided name
+     * @param name Name of the theme
+     * @return Theme, or null if doesn't exist
+     */
     public static Theme getTheme(String name) {
         for(Theme theme : AdvancedXP.instance.themes) {
             if(theme.name.equals(name)) {
