@@ -9,7 +9,8 @@ package co.bugg.advancedxp.themes;
 public abstract class Theme {
 
     public String name = "Default";
-    
+    public boolean enabled = true;
+
     public float translateX = 0F;
     public float translateY = 0.1F;
     public float translateZ = 0F;

@@ -10,7 +10,7 @@ import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
 
-public class ExampleGui extends GuiScreen {
+public class MainGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
