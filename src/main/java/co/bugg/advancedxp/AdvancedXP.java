@@ -3,7 +3,6 @@ package co.bugg.advancedxp;
 import co.bugg.advancedxp.exception.DirectoryCreationFailedException;
 import co.bugg.advancedxp.exception.DuplicateThemeException;
 import co.bugg.advancedxp.gui.MainGui;
-import co.bugg.advancedxp.themes.Rainbow;
 import co.bugg.advancedxp.themes.Theme;
 import co.bugg.advancedxp.render.RenderFactory;
 import co.bugg.advancedxp.util.FileUtil;
@@ -30,7 +29,8 @@ public class AdvancedXP {
     public Theme theme = null;
     public LinkedList<Theme> themes = new LinkedList<>();
 
-    public String configPath = "mods/config/" + Reference.MOD_ID + "/";
+    public String configPath = "config/" + Reference.MOD_ID + "/";
+    public String themesPath = configPath + "themes/";
 
     @Mod.Instance
     public static AdvancedXP instance = new AdvancedXP();
@@ -41,14 +41,14 @@ public class AdvancedXP {
         MinecraftForge.EVENT_BUS.register(instance);
 
         try {
-            FileUtil.createDirRecursive(configPath);
+            FileUtil.createDirRecursive(themesPath);
         } catch (DirectoryCreationFailedException e) {
             System.out.println("FAILED TO CREATE THEMES FOLDER");
             e.printStackTrace();
             return;
         }
 
-        File defaultTheme = new File(configPath + "default.json");
+        File defaultTheme = new File(themesPath + "default.json");
         try {
             FileUtil.createFile(defaultTheme);
             FileUtil.serializeTheme(defaultTheme, new Theme());
@@ -58,7 +58,7 @@ public class AdvancedXP {
         }
 
         try {
-            ThemeUtil.loadThemes(new File(configPath));
+            ThemeUtil.loadThemes(new File(themesPath));
         } catch (IOException | DuplicateThemeException e) {
             System.out.println("Failed to load themes: " + e.getMessage());
             e.printStackTrace();

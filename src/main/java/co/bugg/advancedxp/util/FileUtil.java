@@ -46,9 +46,11 @@ public final class FileUtil {
 
         if(path.contains("/")) {
             String[] dirs = path.split("/");
+            StringBuilder splitPath = new StringBuilder();
 
             for (String dir : dirs) {
-                File dirFile = new File(dir);
+                splitPath.append(dir).append("/");
+                File dirFile = new File(splitPath.toString());
                 createDir(dirFile);
             }
         } else {

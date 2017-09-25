@@ -85,10 +85,10 @@ public class RenderCustomXPOrb extends RenderXPOrb {
             BufferBuilder bufferbuilder = tessellator.getBuffer();
             bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
 
-            bufferbuilder.pos(-0.5D, -0.25D, 0.0D).tex((double)xPos, (double)yScale).color(red, green, blue, 128).normal(0.0F, 1.0F, 0.0F).endVertex();
-            bufferbuilder.pos(0.5D, -0.25D, 0.0D).tex((double)xScale, (double)yScale).color(red, green, blue, 128).normal(0.0F, 1.0F, 0.0F).endVertex();
-            bufferbuilder.pos(0.5D, 0.75D, 0.0D).tex((double)xScale, (double)yPos).color(red, green, blue, 128).normal(0.0F, 1.0F, 0.0F).endVertex();
-            bufferbuilder.pos(-0.5D, 0.75D, 0.0D).tex((double)xPos, (double)yPos).color(red, green, blue, 128).normal(0.0F, 1.0F, 0.0F).endVertex();
+            bufferbuilder.pos(-0.5D, -0.25D, 0.0D).tex((double)xPos, (double)yScale).color(red, green, blue, 128).normal(-0.75F, -1F, 0.25F).endVertex();
+            bufferbuilder.pos(0.5D, -0.25D, 0.0D).tex((double)xScale, (double)yScale).color(red, green, blue, 128).normal(0.25F, -1F, 0F).endVertex();
+            bufferbuilder.pos(0.5D, 0.75D, 0.0D).tex((double)xScale, (double)yPos).color(red, green, blue, 128).normal(0.25F, 2F, 0F).endVertex();
+            bufferbuilder.pos(-0.5D, 0.75D, 0.0D).tex((double)xPos, (double)yPos).color(red, green, blue, 128).normal(-0.75F, 2F, 0.25F).endVertex();
 
             tessellator.draw();
 

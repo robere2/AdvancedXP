@@ -11,7 +11,7 @@ public class Theme {
     public Theme() {}
 
     public String name = "Default";
-    public boolean enabled = true;
+    public boolean enabled = false;
 
     public float translateX = 0F;
     public float translateY = 0.1F;
