@@ -6,7 +6,9 @@ package co.bugg.advancedxp.themes;
  * constructor of extensions on this
  * class.
  */
-public abstract class Theme {
+public class Theme {
+
+    public Theme() {}
 
     public String name = "Default";
     public boolean enabled = true;

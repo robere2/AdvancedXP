@@ -1,11 +1,13 @@
 package co.bugg.advancedxp;
 
 import co.bugg.advancedxp.exception.DirectoryCreationFailedException;
+import co.bugg.advancedxp.exception.DuplicateThemeException;
 import co.bugg.advancedxp.gui.MainGui;
 import co.bugg.advancedxp.themes.Rainbow;
 import co.bugg.advancedxp.themes.Theme;
 import co.bugg.advancedxp.render.RenderFactory;
 import co.bugg.advancedxp.util.FileUtil;
+import co.bugg.advancedxp.util.ThemeUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
@@ -49,9 +51,16 @@ public class AdvancedXP {
         File defaultTheme = new File(configPath + "default.json");
         try {
             FileUtil.createFile(defaultTheme);
-            FileUtil.serializeTheme(defaultTheme, new Rainbow());
+            FileUtil.serializeTheme(defaultTheme, new Theme());
         } catch (IOException e) {
             System.out.println("DEFAULT THEME COULD NOT BE SAVED.");
+            e.printStackTrace();
+        }
+
+        try {
+            ThemeUtil.loadThemes(new File(configPath));
+        } catch (IOException | DuplicateThemeException e) {
+            System.out.println("Failed to load themes: " + e.getMessage());
             e.printStackTrace();
         }
     }

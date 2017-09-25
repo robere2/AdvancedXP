@@ -74,17 +74,17 @@ public class MainGui extends GuiScreen {
 
         // Color modifiers
         if(theme.redStatic) {
-            red = (theme.redStaticValue * theme.redMultiplier);
+            red = (theme.redStaticValue * theme.redMultiplier) / 255;
         } else {
             red = ((MathHelper.sin(redModifier + theme.redWaveOffset + ((theme.redSquareWave ? Math.abs(MathHelper.cos(redModifier + theme.redWaveOffset)) : 0))) + 1.0F) * 0.5F * theme.redMultiplier);
         }
         if(theme.greenStatic) {
-            green = (theme.greenStaticValue * theme.greenMultiplier);
+            green = (theme.greenStaticValue * theme.greenMultiplier) / 255;
         } else {
             green = ((MathHelper.sin(greenModifier + theme.greenWaveOffset + ((theme.greenSquareWave ? Math.abs(MathHelper.cos(greenModifier + theme.greenWaveOffset)) : 0))) + 1.0F) * 0.5F * theme.greenMultiplier);
         }
         if(theme.blueStatic) {
-            blue = (theme.blueStaticValue * theme.blueMultiplier);
+            blue = (theme.blueStaticValue * theme.blueMultiplier) / 255;
         } else {
             blue = ((MathHelper.sin(blueModifier + theme.blueWaveOffset + ((theme.blueSquareWave ? Math.abs(MathHelper.cos(blueModifier + theme.blueWaveOffset)) : 0))) + 1.0F) * 0.5F * theme.blueMultiplier);
         }
