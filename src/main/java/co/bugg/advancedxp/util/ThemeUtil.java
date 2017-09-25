@@ -65,4 +65,37 @@ public final class ThemeUtil {
         }
         return null;
     }
+
+    /**
+     * Get the index of the loaded theme with provided name
+     * @param name Name of the theme
+     * @return Int index, or -1 if doesn't exist
+     */
+    public static int getThemeIndex(String name) {
+        int index = 0;
+        for(Theme theme : AdvancedXP.instance.themes) {
+            if(theme.name.equals(name)) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+
+
+    public static void setEnabled(Theme theme) {
+
+        // Loop through all themes and set their "enabled"
+        // field to false, unless they are the theme
+        // that was passed
+        for(Theme currentTheme : AdvancedXP.instance.themes) {
+            currentTheme.enabled = currentTheme.name.equals(theme.name);
+            try {
+                FileUtil.serializeTheme(new File(AdvancedXP.instance.themesPath + currentTheme.fileName), currentTheme);
+            } catch (IOException e) {
+                System.out.println("Failed to save theme " + theme.name + " to " + theme.fileName);
+                e.printStackTrace();
+            }
+        }
+    }
 }

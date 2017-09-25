@@ -3,22 +3,37 @@ package co.bugg.advancedxp.gui;
 import co.bugg.advancedxp.AdvancedXP;
 import co.bugg.advancedxp.Reference;
 import co.bugg.advancedxp.themes.Theme;
+import co.bugg.advancedxp.util.ThemeUtil;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class MainGui extends GuiScreen {
 
+    Theme theme;
+    int orbWidth = 154;
+    int orbHeight = 16;
+    int sampleScale = 3;
+    // Is changed every time drawScreen() is ran
+    float finalScale;
+
+    public MainGui() {
+        theme = AdvancedXP.instance.theme;
+        finalScale = theme.scale * sampleScale;
+    }
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        Theme theme = AdvancedXP.instance.theme;
-
-        super.drawScreen(mouseX, mouseY, partialTicks);
+        theme = AdvancedXP.instance.theme;
+        finalScale = theme.scale * sampleScale;
 
         drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
 
         GlStateManager.pushMatrix();
         GlStateManager.enableAlpha();
@@ -30,12 +45,8 @@ public class MainGui extends GuiScreen {
 
         mc.renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID, "textures/sample.png"));
 
-        int orbWidth = 154;
-        int orbHeight = 16;
-        int sampleScale = 3;
-        float finalScale = theme.scale * sampleScale;
         GlStateManager.scale(finalScale, finalScale, finalScale);
-        drawTexturedModalRect((int) (((width / 2) - (orbWidth * finalScale / 2)) / finalScale), (int) (((height * 0.05) - (orbHeight * finalScale / 2)) / finalScale), 0, 0, orbWidth, orbHeight);
+        drawTexturedModalRect((int) (((width / 2) - (orbWidth * finalScale / 2)) / finalScale), (int) (((height * 0.2) - (orbHeight * finalScale / 2)) / finalScale), 0, 0, orbWidth, orbHeight);
 
         GlStateManager.disableAlpha();
         GlStateManager.disableBlend();
@@ -46,6 +57,30 @@ public class MainGui extends GuiScreen {
     @Override
     public void initGui() {
         super.initGui();
+        int buttonId = 0;
+        int buttonWidth = 200;
+        int buttonHeight = 20;
+        System.out.println(orbHeight);
+        System.out.println(finalScale);
+        buttonList.add(new GuiButton(buttonId, width / 2 - buttonWidth / 2, (int) ((height * 0.2) - (buttonHeight / 2) + (orbHeight * finalScale) + 10), buttonWidth, buttonHeight, "Theme: " + AdvancedXP.instance.theme.name));
+    }
+
+    @Override
+    protected void actionPerformed(GuiButton button) throws IOException {
+        super.actionPerformed(button);
+
+        if(button.id == 0) {
+            int newIndex = ThemeUtil.getThemeIndex(AdvancedXP.instance.theme.name) + 1;
+            if(newIndex >= AdvancedXP.instance.themes.size()) {
+                newIndex = 0;
+            }
+            Theme newTheme = AdvancedXP.instance.themes.get(newIndex);
+
+            buttonList.get(0).displayString = "Theme: " + newTheme.name;
+
+            AdvancedXP.instance.theme = newTheme;
+            ThemeUtil.setEnabled(newTheme);
+        }
     }
 
     /**
