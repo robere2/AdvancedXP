@@ -3,7 +3,6 @@ package co.bugg.advancedxp.util;
 import co.bugg.advancedxp.AdvancedXP;
 import co.bugg.advancedxp.exception.DuplicateThemeException;
 import co.bugg.advancedxp.themes.Theme;
-import com.sun.istack.internal.NotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +17,9 @@ public final class ThemeUtil {
      * @throws IOException Input or output exception
      * @throws DuplicateThemeException Multiple themes with the same name or set to default
      */
-    public static void loadThemes(@NotNull File dir) throws IOException, DuplicateThemeException {
+    public static void loadThemes(File dir) throws IOException, DuplicateThemeException {
+        if(dir == null) throw new IllegalArgumentException("Directory passed may not be null");
+
         if (dir.listFiles() != null) {
             for (File file : dir.listFiles()) {
                 if (file.isDirectory()) {

@@ -64,7 +64,7 @@ public class AdvancedXP {
         // Try to load all registered themes into the LinkedList of themes
         try {
             ThemeUtil.loadThemes(new File(themesPath));
-        } catch (IOException | DuplicateThemeException e) {
+        } catch (IOException | DuplicateThemeException | IllegalArgumentException e) {
             System.out.println("Failed to load themes: " + e.getMessage());
             e.printStackTrace();
         }
