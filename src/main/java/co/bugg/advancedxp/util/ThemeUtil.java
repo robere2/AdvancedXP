@@ -27,6 +27,7 @@ public final class ThemeUtil {
                     Theme theme = FileUtil.deserializeTheme(file);
                     if(theme != null) {
                         if(getTheme(theme.name) == null) {
+                            theme.fileName = file.getName();
                             AdvancedXP.instance.themes.add(theme);
                             if(theme.enabled) {
                                 if(AdvancedXP.instance.theme == null) {

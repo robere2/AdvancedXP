@@ -1,5 +1,6 @@
 package co.bugg.advancedxp;
 
+import co.bugg.advancedxp.commands.BaseCommand;
 import co.bugg.advancedxp.exception.DirectoryCreationFailedException;
 import co.bugg.advancedxp.exception.DuplicateThemeException;
 import co.bugg.advancedxp.gui.MainGui;
@@ -9,11 +10,13 @@ import co.bugg.advancedxp.util.FileUtil;
 import co.bugg.advancedxp.util.ThemeUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -37,9 +40,12 @@ public class AdvancedXP {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        // Register the new renderer for XP orbs
         RenderingRegistry.registerEntityRenderingHandler(EntityXPOrb.class, new RenderFactory());
-        MinecraftForge.EVENT_BUS.register(instance);
 
+        MinecraftForge.EVENT_BUS.register(new AdvancedXPEventHandler());
+
+        // Try to create the themes directory if it doesn't exist already
         try {
             FileUtil.createDirRecursive(themesPath);
         } catch (DirectoryCreationFailedException e) {
@@ -48,15 +54,19 @@ public class AdvancedXP {
             return;
         }
 
-        File defaultTheme = new File(themesPath + "default.json");
+        // Try to save the default theme to the themes folder
+        // (This is overwritten every restart & can't be changed)
+        Theme defaultTheme = new Theme();
+        File defaultThemeFile = new File(themesPath + defaultTheme.fileName);
         try {
-            FileUtil.createFile(defaultTheme);
-            FileUtil.serializeTheme(defaultTheme, new Theme());
+            FileUtil.createFile(defaultThemeFile);
+            FileUtil.serializeTheme(defaultThemeFile, new Theme());
         } catch (IOException e) {
             System.out.println("DEFAULT THEME COULD NOT BE SAVED.");
             e.printStackTrace();
         }
 
+        // Try to load all registered themes into the LinkedList of themes
         try {
             ThemeUtil.loadThemes(new File(themesPath));
         } catch (IOException | DuplicateThemeException e) {
@@ -65,18 +75,8 @@ public class AdvancedXP {
         }
     }
 
-    private boolean skipTick = false;
-
-    @SubscribeEvent
-    public void onTick(TickEvent.ClientTickEvent event) {
-        if(!skipTick) {
-            color++;
-        }
-        skipTick = !skipTick;
-    }
-
-    @SubscribeEvent
-    public void onChat(ClientChatReceivedEvent event) {
-        Minecraft.getMinecraft().displayGuiScreen(new MainGui());
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        ClientCommandHandler.instance.registerCommand(new BaseCommand());
     }
 }

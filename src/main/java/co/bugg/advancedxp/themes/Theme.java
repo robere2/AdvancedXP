@@ -11,6 +11,7 @@ public class Theme {
     public Theme() {}
 
     public String name = "Default";
+    public transient String fileName = "default.json";
     public boolean enabled = false;
 
     public float translateX = 0F;
