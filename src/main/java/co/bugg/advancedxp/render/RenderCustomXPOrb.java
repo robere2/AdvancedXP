@@ -38,7 +38,7 @@ public class RenderCustomXPOrb extends RenderXPOrb {
             float yPos = (float)(orbTexture / 4 * 16) / 64.0F;
             float yScale = (float)(orbTexture / 4 * 16 + 16) / 64.0F;
 
-            int brightnessForRender = entity.getBrightnessForRender();
+            int brightnessForRender = entity.getBrightnessForRender(partialTicks);
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)brightnessForRender % 65536, (float)brightnessForRender / 65536);
 
             // Reset color modifiers
@@ -82,7 +82,7 @@ public class RenderCustomXPOrb extends RenderXPOrb {
             GlStateManager.scale(theme.scale, theme.scale, theme.scale);
 
             Tessellator tessellator = Tessellator.getInstance();
-            BufferBuilder bufferbuilder = tessellator.getBuffer();
+            VertexBuffer bufferbuilder = tessellator.getBuffer();
             bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL);
 
             bufferbuilder.pos(-0.5D, -0.25D, 0.0D).tex((double)xPos, (double)yScale).color(red, green, blue, 128).normal(-0.75F, -1F, 0.25F).endVertex();

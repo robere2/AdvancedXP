@@ -19,17 +19,17 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 public class BaseCommand implements ICommand {
     @Override
-    public String getName() {
+    public String getCommandName() {
         return "axp";
     }
 
     @Override
-    public String getUsage(ICommandSender sender) {
+    public String getCommandUsage(ICommandSender sender) {
         return "/axp <args...>";
     }
 
     @Override
-    public List<String> getAliases() {
+    public List<String> getCommandAliases() {
         List<String> aliases = new ArrayList<>();
         aliases.add("advancedxp");
         return aliases;
@@ -46,7 +46,7 @@ public class BaseCommand implements ICommand {
     }
 
     @Override
-    public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
+    public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos) {
         return new ArrayList<>();
     }
 
