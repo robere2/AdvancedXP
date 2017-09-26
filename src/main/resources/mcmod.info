@@ -1,7 +1,7 @@
 [
 {
   "modid": "advancedxp",
-  "name": "Advanced Experience",
+  "name": "Advanced XP",
   "description": "Minecraft Mod to customize your Experience Orb colors & traits.",
   "version": "${version}",
   "mcversion": "${mcversion}",
