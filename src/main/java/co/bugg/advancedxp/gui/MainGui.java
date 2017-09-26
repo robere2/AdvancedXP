@@ -6,10 +6,10 @@ import co.bugg.advancedxp.themes.Theme;
 import co.bugg.advancedxp.util.ThemeUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.TextComponentTranslation;
 
 import java.awt.*;
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class MainGui extends GuiScreen {
         int buttonHeight = 20;
         System.out.println(orbHeight);
         System.out.println(finalScale);
-        buttonList.add(new GuiButton(buttonId, width / 2 - buttonWidth / 2, (int) ((height * 0.2) - (buttonHeight / 2) + (orbHeight * finalScale) + 10), buttonWidth, buttonHeight, new TextComponentTranslation("advancedxp.button.theme").getFormattedText() + ": " + AdvancedXP.instance.theme.name));
+        buttonList.add(new GuiButton(buttonId, width / 2 - buttonWidth / 2, (int) ((height * 0.2) - (buttonHeight / 2) + (orbHeight * finalScale) + 10), buttonWidth, buttonHeight, new ChatComponentTranslation("advancedxp.button.theme").getFormattedText() + ": " + AdvancedXP.instance.theme.name));
     }
 
     @Override
@@ -77,7 +77,7 @@ public class MainGui extends GuiScreen {
             }
             Theme newTheme = AdvancedXP.instance.themes.get(newIndex);
 
-            buttonList.get(0).displayString = new TextComponentTranslation("advancedxp.button.theme").getFormattedText() + ": " + newTheme.name;
+            buttonList.get(0).displayString = new ChatComponentTranslation("advancedxp.button.theme").getFormattedText() + ": " + newTheme.name;
 
             AdvancedXP.instance.theme = newTheme;
             ThemeUtil.setEnabled(newTheme);
