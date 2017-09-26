@@ -26,6 +26,10 @@ compileJava {
     sourceCompatibility = targetCompatibility = '1.8'
 }
 
+jar {
+    from file("LICENSE")
+}
+
 version = "1.0"
 group= "co.bugg.advancedxp" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AdvancedXP"
