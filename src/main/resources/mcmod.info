@@ -1,15 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "advancedxp",
+  "name": "Advanced Experience",
+  "description": "Minecraft Mod to customize your Experience Orb colors & traits.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
+  "url": "https://github.com/bugfroggy/AdvancedXP/",
+  "updateUrl": "https://github.com/bugfroggy/AdvancedXP/releases",
+  "updateJSON": "https://github.com/bugfroggy/AdvancedXP/blob/master/versions.json",
+  "authorList": ["bugfroggy"]
   "screenshots": [],
   "dependencies": []
 }

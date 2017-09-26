@@ -20,7 +20,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
+@Mod(
+        modid = Reference.MOD_ID,
+        name = Reference.MOD_NAME,
+        version = Reference.VERSION,
+        acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS,
+        clientSideOnly = true,
+        updateJSON = "https://github.com/bugfroggy/AdvancedXP/blob/master/versions.json"
+)
 public class AdvancedXP {
 
     public float color;
