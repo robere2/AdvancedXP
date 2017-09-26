@@ -28,7 +28,7 @@ compileJava {
 
 version = "1.0"
 group= "co.bugg.advancedxp" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "AdvancedExperience"
+archivesBaseName = "AdvancedXP"
 
 idea {
     module {
