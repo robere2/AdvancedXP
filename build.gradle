@@ -31,6 +31,11 @@ jar {
     from file("LICENSE")
 }
 
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
 version = "1.0"
 group= "co.bugg.advancedxp" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "AdvancedXP"
