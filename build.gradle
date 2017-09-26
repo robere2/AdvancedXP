@@ -27,9 +27,13 @@ idea {
     }
 }
 
+jar {
+    from file("LICENSE")
+}
+
 version = "1.0"
-group= "co.bugg.blankmod" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "BlankMod"
+group= "co.bugg.advancedxp" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "AdvancedXP"
 
 minecraft {
     version = "1.9.4-12.17.0.2051"
