@@ -8,7 +8,7 @@
   "url": "https://github.com/bugfroggy/AdvancedXP/",
   "updateUrl": "https://github.com/bugfroggy/AdvancedXP/releases",
   "updateJSON": "https://github.com/bugfroggy/AdvancedXP/blob/master/versions.json",
-  "authorList": ["bugfroggy"]
+  "authorList": ["bugfroggy"],
   "screenshots": [],
   "dependencies": []
 }
