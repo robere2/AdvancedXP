@@ -36,11 +36,13 @@ public class AdvancedXPEventHandler {
                 // File name isn't stored in the JSON file. Easiest way to
                 // get around this is storing the file name temporarily then
                 // setting it again after the theme has been deserialized
-                String tempFileNameStorage = AdvancedXP.instance.theme.fileName;
+                if(AdvancedXP.instance.theme != null) {
+                    String tempFileNameStorage = AdvancedXP.instance.theme.fileName;
 
-                AdvancedXP.instance.theme = FileUtil.deserializeTheme(new File(AdvancedXP.instance.themesPath + tempFileNameStorage));
+                    AdvancedXP.instance.theme = FileUtil.deserializeTheme(new File(AdvancedXP.instance.themesPath + tempFileNameStorage));
 
-                AdvancedXP.instance.theme.fileName = tempFileNameStorage;
+                    AdvancedXP.instance.theme.fileName = tempFileNameStorage;
+                }
             } catch (IOException e) {
                 System.out.println("Failed to reload theme.");
                 e.printStackTrace();
